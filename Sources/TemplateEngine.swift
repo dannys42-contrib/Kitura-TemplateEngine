@@ -18,6 +18,6 @@
 // influenced by http://expressjs.com/en/guide/using-template-engines.html
 
 public protocol TemplateEngine {
-    var fileExtension: String? { get }
+    var fileExtension: String { get }
     func render(filePath: String, context: [String: Any]) throws -> String
 }
