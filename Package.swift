@@ -17,5 +17,6 @@
 import PackageDescription
 
 let package = Package(
-    name: "Kitura-TemplateEngine"
+    name: "Kitura-TemplateEngine",
+    dependencies: [ ]
 )
