@@ -15,16 +15,22 @@
  */
 
 
+public protocol RenderingOptions {}
+
+public struct NullRenderingOptions: RenderingOptions {
+    public init() {}
+}
+
 /// Template Engine protocol for Kitura. Implemented by Templating Engines in order to
 /// integrate with Kitura's content generation APIs.
 ///
 /// - Note: Influenced by http://expressjs.com/en/guide/using-template-engines.html
 public protocol TemplateEngine {
-    
+
     /// The file extension of files in the views directory that will be
     /// rendered by a particular templating engine.
     var fileExtension: String { get }
-    
+
     /// Take a template file and a set of "variables" in the form of a context
     /// and generate content to be sent back to the client.
     ///
@@ -33,4 +39,25 @@ public protocol TemplateEngine {
     /// - Parameter context: A set of variables in the form of a Dictionary of
     ///                     Key/Value pairs, that can be used when generating the content.
     func render(filePath: String, context: [String: Any]) throws -> String
+
+    /// Take a template file and a set of "variables" in the form of a context
+    /// and generate content to be sent back to the client.
+    ///
+    /// - Parameter filePath: The path of the template file to use when generating
+    ///                      the content.
+    /// - Parameter context: A set of variables in the form of a Dictionary of
+    ///                     Key/Value pairs, that can be used when generating the content.
+    /// - Parameter options: rendering options, different per each template engine
+    ///
+    func render(filePath: String, context: [String: Any],
+                options: RenderingOptions) throws -> String
+}
+
+extension TemplateEngine {
+    // implementation of render with options parameter for TemplateEngines
+    // that did not implement it
+    public func render(filePath: String, context: [String: Any],
+                       options: RenderingOptions) throws -> String {
+        return try render(filePath: filePath, context: context)
+    }
 }
