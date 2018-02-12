@@ -55,7 +55,7 @@ The following example will render the Stencil template `example.stencil` and add
 ```swift
 router.get("/example") { request, response, next in
     var context: [String: Any] = ["key" : "value"]
-    try response.render("example.stencil", context: context).end()
+    try response.render("example.stencil", context: context)
     next()
 }
 ```
