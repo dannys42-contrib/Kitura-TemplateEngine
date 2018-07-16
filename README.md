@@ -5,24 +5,22 @@
 </p>
 
 <p align="center">
-<a href="http://www.kitura.io/">
-<img src="https://img.shields.io/badge/docs-kitura.io-1FBCE4.svg" alt="Docs">
-</a>
-<a href="https://travis-ci.org/IBM-Swift/Kitura-TemplateEngine">
-<img src="https://travis-ci.org/IBM-Swift/Kitura-TemplateEngine.svg?branch=master" alt="Build Status - Master">
-</a>
-<img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
-<img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
-<img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
-<a href="http://swift-at-ibm-slack.mybluemix.net/">
-<img src="http://swift-at-ibm-slack.mybluemix.net/badge.svg" alt="Slack Status">
-</a>
+    <a href="https://ibm-swift.github.io/Kitura-TemplateEngine/index.html">
+    <img src="https://img.shields.io/badge/apidoc-KituraTemplateEngine-1FBCE4.svg?style=flat" alt="APIDoc">
+    </a>
+    <img src="https://travis-ci.org/IBM-Swift/Kitura-TemplateEngine.svg?branch=master" alt="Build Status - Master">
+    </a>
+    <img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
+    <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
+    <img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
+    <a href="http://swift-at-ibm-slack.mybluemix.net/">
+    <img src="http://swift-at-ibm-slack.mybluemix.net/badge.svg" alt="Slack Status">
+    </a>
 </p>
 
 # Kitura-TemplateEngine
 The Kitura template engine abstraction layer.
 
-## Summary
 Kitura-TemplateEngine provides a `TemplateEngine` protocol to unify the APIs of multiple template engines and integrate them with Kitura's content generation APIs. At runtime, the template engine replaces variables in a template file with actual values, and transforms the template into an HTML file sent to the client. This approach makes it easier to design an HTML page with integrated Swift code.
 
 - Inspired by http://expressjs.com/en/guide/using-template-engines.html.
@@ -34,8 +32,42 @@ Kitura-TemplateEngine is an easy to learn, consumable framework that comes with 
 * [Kitura-MustacheTemplateEngine](https://github.com/IBM-Swift/Kitura-MustacheTemplateEngine)
 * [Kitura-Markdown](https://github.com/IBM-Swift/Kitura-Markdown)
 
+## Usage
+
+ We don't expect you to need to import Kitura-TemplateEngine, as it will automatically be pulled in as a dependency by the above plugins (you can see an example of this in [Examples](#examples) below) - unless you are implementing a new plugin for Kitura-TemplateEngine. If you do need to directly add Kitura-TemplateEngine as a dependency you can do so as follows:
+
+#### Add dependencies
+
+Add the `Kitura-TemplateEngine` package to the dependencies within your application’s `Package.swift` file. Substitute `"x.x.x"` with the latest `Kitura-TemplateEngine` [release](https://github.com/IBM-Swift/Kitura-TemplateEngine/releases).
+
+```swift
+.package(url: "https://github.com/IBM-Swift/Kitura-TemplateEngine.git", from: "x.x.x")
+```
+
+Add `KituraTemplateEngine` to your target's dependencies:
+
+```swift
+.target(name: "example", dependencies: ["KituraTemplateEngine"]),
+```
+
+#### Import package
+
+```swift
+import KituraTemplateEngine
+```
+
 ## Examples
 The following code examples use the [Kitura-StencilTemplateEngine](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine), however, because this is an abstraction layer, Stencil could be substituted for any supported template engine.
+
+If you are using Stencil, within your `Package.swift` file you will need to:
+
+ - Define "https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git" as a dependency.
+ - Add "KituraStencil" to the targets for Application.
+
+ You will also need to add `KituraStencil` to the file where you're writing your Swift code:
+ ```swift
+import KituraStencil
+```
 
 The following code initializes a [Stencil](https://github.com/kylef/Stencil) template engine and adds it to the [Kitura](https://github.com/IBM-Swift/Kitura) router.
 This will render files with the template engine's default file extension, in this example these would be `.stencil` files.
@@ -63,6 +95,12 @@ router.get("/example") { request, response, next in
 }
 ```
 
-## License
-This library is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE.txt).
+## API Documentation
+For more information visit our [API reference](https://ibm-swift.github.io/Kitura-TemplateEngine/index.html).
 
+## Community
+
+We love to talk server-side Swift, and Kitura. Join our [Slack](http://swift-at-ibm-slack.mybluemix.net/) to meet the team!
+
+## License
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/IBM-Swift/Kitura-TemplateEngine/blob/master/LICENSE.txt).
