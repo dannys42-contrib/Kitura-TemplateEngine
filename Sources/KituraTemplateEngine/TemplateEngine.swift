@@ -86,6 +86,8 @@ public protocol TemplateEngine {
     ///
     /// - Parameter rootPaths: the paths where the included templates can be
     func setRootPaths(rootPaths: [String])
+
+    var rootPaths: [String] { get set }
 }
 
 extension TemplateEngine {
@@ -104,5 +106,5 @@ extension TemplateEngine {
     }
 
     // Implementation of setRootPaths for TemplateEngines that do not implement it
-    public func setRootPaths(rootPaths: [String]) {}
+    public mutating func setRootPaths(rootPaths: [String]) { self.rootPaths = rootPaths }
 }
