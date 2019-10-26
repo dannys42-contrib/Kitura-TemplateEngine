@@ -106,5 +106,5 @@ extension TemplateEngine {
     }
 
     // Implementation of setRootPaths for TemplateEngines that do not implement it
-    public mutating func setRootPaths(rootPaths: [String]) { self.rootPaths = rootPaths }
+    public func setRootPaths(rootPaths: [String]) { }
 }
